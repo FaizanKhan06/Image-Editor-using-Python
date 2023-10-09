@@ -191,12 +191,12 @@ def crop_image():
     global original_image, undo_stack
     undo_stack.append(original_image)
     r = cv2.selectROI(original_image)
-    cropped = original_image[r[1]:r[1]+r[3], r[0]:r[0]+r[2]]
+    cropped_image = original_image[r[1]:r[1]+r[3], r[0]:r[0]+r[2]]
 
-    cropped_image = cv2.cvtColor(cropped, cv2.COLOR_BGR2RGB)
+    cropped_image_rgb = cv2.cvtColor(cropped_image, cv2.COLOR_BGR2RGB)
     
     # Create a PIL ImageTk object from the modified grayscale image
-    photo = ImageTk.PhotoImage(image=Image.fromarray(cropped_image))
+    photo = ImageTk.PhotoImage(image=Image.fromarray(cropped_image_rgb))
         
         # Update the Tkinter label with the modified image
     image_label.config(image=photo)
